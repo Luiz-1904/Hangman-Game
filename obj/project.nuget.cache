@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "h1ACLLbOyjaQh9/S9EA1f/ra974XHbOvcL2ylt6dDLp4cDKHHpDDpiZMqHuSVYdIwdCiPdSOahN0Vwh/7NoB6w==",
+  "success": true,
+  "projectFilePath": "/home/luiz/coisasqueeuuso/Codigos/Hangman/Hangman.csproj",
+  "expectedPackageFiles": [
+    "/home/luiz/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.10/microsoft.aspnetcore.app.ref.8.0.10.nupkg.sha512"
+  ],
+  "logs": []
+}

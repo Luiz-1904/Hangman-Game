@@ -1,0 +1,14 @@
+/home/luiz/coisasqueeuuso/Codigos/Hangman/bin/Debug/net8.0/Hangman
+/home/luiz/coisasqueeuuso/Codigos/Hangman/bin/Debug/net8.0/Hangman.deps.json
+/home/luiz/coisasqueeuuso/Codigos/Hangman/bin/Debug/net8.0/Hangman.runtimeconfig.json
+/home/luiz/coisasqueeuuso/Codigos/Hangman/bin/Debug/net8.0/Hangman.dll
+/home/luiz/coisasqueeuuso/Codigos/Hangman/bin/Debug/net8.0/Hangman.pdb
+/home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/Hangman.GeneratedMSBuildEditorConfig.editorconfig
+/home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/Hangman.AssemblyInfoInputs.cache
+/home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/Hangman.AssemblyInfo.cs
+/home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/Hangman.csproj.CoreCompileInputs.cache
+/home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/Hangman.dll
+/home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/refint/Hangman.dll
+/home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/Hangman.pdb
+/home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/Hangman.genruntimeconfig.cache
+/home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/ref/Hangman.dll
