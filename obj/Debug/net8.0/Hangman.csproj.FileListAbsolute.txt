@@ -12,3 +12,4 @@
 /home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/Hangman.pdb
 /home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/Hangman.genruntimeconfig.cache
 /home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/ref/Hangman.dll
+/home/luiz/coisasqueeuuso/Codigos/Hangman/obj/Debug/net8.0/Hangman.sourcelink.json

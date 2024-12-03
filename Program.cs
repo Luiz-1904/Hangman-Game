@@ -1,105 +1,123 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 
 class HangmanGame
 {
-    static private bool isGameRunning = true;
-    static private Random randomizer = new Random();
+    static bool isGameRunning = true;
+    static Random randomizer = new Random();
     static readonly Dictionary<int, string> wordBank = new()
     {
-        {1, "Apple"},
-        {2, "Banana"},
-        {3, "Computer"},
-        {4, "Development"},
-        {5, "Programming"},
-        {6, "Technology"},
-        {7, "Laptop"},
-        {8, "Keyboard"},
-        {9, "Monitor"},
-        {10, "Internet"}
+        { 1, "Apple" }, { 2, "Banana" }, { 3, "Computer" },
+        { 4, "Development" }, { 5, "Programming" }, { 6, "Technology" },
+        { 7, "Laptop" }, { 8, "Keyboard" }, { 9, "Monitor" }, { 10, "Internet" }
     };
 
     static void Main(string[] args)
     {
         while (isGameRunning)
         {
-            int randomKey = wordBank.Keys.ElementAt(randomizer.Next(wordBank.Count));
-
-            if (wordBank.ContainsKey(randomKey) && wordBank.TryGetValue(randomKey, out string selectedWord))
-            {
-                char[] wordLetters = selectedWord.ToCharArray();
-                StartGame(wordLetters, selectedWord);
-            }
+            Console.Clear();
+            string selectedWord = SelectRandomWord();
+            PlayGame(selectedWord);
         }
     }
 
-    static void StartGame(char[] wordLetters, string selectedWord)
+    static string SelectRandomWord()
     {
-        char[] maskedWord = new string('_', wordLetters.Length).ToCharArray();
+        int randomKey = randomizer.Next(1, wordBank.Count + 1);
+        return wordBank[randomKey];
+    }
+
+    static void PlayGame(string selectedWord)
+    {
+        char[] maskedWord = new string('_', selectedWord.Length).ToCharArray();
+        HashSet<char> triedLetters = new();
         int remainingAttempts = 5;
 
-        Console.WriteLine("Welcome to the Hangman game, you have 5 attempts to get the right word!");
+        Console.WriteLine("\nWelcome to the Hangman game! You have 5 attempts to guess the word.");
+
         while (remainingAttempts > 0)
         {
-            Console.WriteLine(new string(maskedWord));
-            char guessedLetter = GetValidLetter("\nGuess a letter: ");
+            Console.WriteLine($"\nWord: {new string(maskedWord)}");
+            Console.WriteLine($"Tried letters: {string.Join(", ", triedLetters)}");
+            Console.WriteLine($"Remaining attempts: {remainingAttempts}");
+            char guessedLetter = GetValidLetter("\nGuess a letter: ", triedLetters);
+
+            triedLetters.Add(guessedLetter);
 
             if (UpdateMaskedWord(guessedLetter, selectedWord.ToUpper(), maskedWord))
             {
-                Console.WriteLine("You guessed correctly!");
+                Console.Clear();
+                Console.WriteLine("Correct guess!");
+
             }
             else
             {
                 remainingAttempts--;
-                Console.WriteLine($"Wrong guess! Attempts remaining: {remainingAttempts}\n");
+                Console.Clear();
+                Console.WriteLine("Wrong guess!");
+
             }
 
             if (!maskedWord.Contains('_'))
             {
-                Console.WriteLine($"Congratulations! You WON! The word was {selectedWord.ToUpper()}");
+                Console.WriteLine($"\nCongratulations! You won! The word was {selectedWord.ToUpper()}");
                 break;
             }
         }
 
         if (remainingAttempts == 0)
         {
-            Console.WriteLine($"You lost! The word was: {selectedWord.ToUpper()}\n");
+            Console.WriteLine($"\nYou lost! The word was: {selectedWord.ToUpper()}");
         }
 
-        Console.Write("\nDo you want to play again? (Y/N): ");
-        isGameRunning = Console.ReadLine()?.Trim().ToUpper() == "Y";
+        isGameRunning = AskToPlayAgain();
     }
 
-    static char GetValidLetter(string prompt)
+    static char GetValidLetter(string prompt, HashSet<char> triedLetters)
     {
-        char letter;
-
-        do
+        while (true)
         {
             Console.Write(prompt);
-            var input = Console.ReadLine()?.Trim().ToUpper();
-            bool hasNumber = input.Any(char.IsDigit);
-            if (!string.IsNullOrEmpty(input) && input.Length == 1 && !hasNumber)
-            {
-                letter = input[0];
-                return letter;
-            }
+            string input = Console.ReadLine()?.Trim().ToUpper();
 
-            Console.WriteLine("Invalid input. Please enter a single letter.");
-        } while (true);
+            if (!string.IsNullOrEmpty(input) && input.Length == 1 && char.IsLetter(input[0]))
+            {
+                char letter = input[0];
+                if (triedLetters.Contains(letter))
+                {
+                    Console.WriteLine("You've already tried this letter. Try another.");
+                }
+                else
+                {
+                    return letter;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a single letter.");
+            }
+        }
     }
 
     static bool UpdateMaskedWord(char letter, string selectedWord, char[] maskedWord)
     {
-        bool isCorrectGuess = false;
-
+        bool isCorrect = false;
         for (int i = 0; i < selectedWord.Length; i++)
         {
             if (selectedWord[i] == letter)
             {
                 maskedWord[i] = letter;
-                isCorrectGuess = true;
+                isCorrect = true;
             }
         }
-        return isCorrectGuess;
+        return isCorrect;
+    }
+
+    static bool AskToPlayAgain()
+    {
+        Console.Write("\nDo you want to play again? (Y/N): ");
+        string input = Console.ReadLine()?.Trim().ToUpper();
+        return input == "Y";
     }
 }
