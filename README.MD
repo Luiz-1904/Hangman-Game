@@ -33,7 +33,3 @@ This is a simple console-based Hangman game written in C#. The game allows the u
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
-
-```
-
-```
